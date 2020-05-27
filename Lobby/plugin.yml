@@ -1,0 +1,17 @@
+name: ModernWarfareMain
+author: FANA Studio
+main: org.waterhappy.games.mwmain.Main
+version: 0.8 Beta
+commands:
+  setlobby:
+   description: Set Lobby Location
+   usage: /setlobby
+  hub:
+   description: Go To Lobby
+   usage: /hub
+  lobby:
+   description: Go To Lobby
+   usage: /lobby
+  build:
+   description: Make You Able To Build
+   usage: /build

@@ -1,0 +1,4 @@
+name: ModernWarfareIngamePlugin
+version: 0.1 Private
+author: FANA Studio
+main: org.waterhappy.game.mwingame.Main
