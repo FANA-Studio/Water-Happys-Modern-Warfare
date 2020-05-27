@@ -28,9 +28,6 @@ public class Main extends JavaPlugin{
 		getServer().getConsoleSender().sendMessage(ChatColor.GOLD +  "");
 		getServer().getConsoleSender().sendMessage(ChatColor.GOLD +  "================================");
 	}
-	public void SetUpConfig() {
-		if(getConfig().getIn)
-	}
 	public void SetUpTeam() {
 		Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
 		Team red = board.registerNewTeam("Red");
