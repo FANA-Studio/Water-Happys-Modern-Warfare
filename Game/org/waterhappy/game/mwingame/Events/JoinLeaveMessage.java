@@ -6,6 +6,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.waterhappy.game.mwingame.Main;
@@ -31,13 +32,27 @@ public class JoinLeaveMessage implements Listener {
 		}
 		if(blues >= reds) {
 			red.addPlayer(event.getPlayer());
+			event.getPlayer().setDisplayName(ChatColor.RED + event.getPlayer().getName());
 		} else {
 			blue.addPlayer(event.getPlayer());
+			event.getPlayer().setDisplayName(ChatColor.BLUE + event.getPlayer().getName());
 		}
 		int max = plugin.getConfig().getInt("rules.max");
 		if(event.getPlayer().getServer().getOnlinePlayers().size() >= max) {
-			event.getPlayer().kickPlayer(ChatColor.GOLD + "Wow，伺服器已滿!!稍後再回來看看吧!(" + event.getPlayer().getServer().getOnlinePlayers().size() + "/" + max + ")");
+			int now = event.getPlayer().getServer().getOnlinePlayers().size();
+			now -= 1;
+			event.getPlayer().kickPlayer(ChatColor.GOLD + "Wow，伺服器已滿!!稍後再回來看看吧!(" + now + "/" + max + ")");
 		}
-		event.getPlayer().getServer().broadcastMessage(ChatColor.GRAY + event.getPlayer().getDisplayName() + ChatColor.GOLD + " 參加了這局遊戲! (" + ChatColor.AQUA + event.getPlayer().getServer().getOnlinePlayers().size() + ChatColor.GOLD + "/" + ChatColor.AQUA + max + ChatColor.GOLD + ")");
+		event.getPlayer().getServer().broadcastMessage(ChatColor.GRAY + event.getPlayer().getDisplayName() + ChatColor.YELLOW + " 參加了這局遊戲! (" + ChatColor.AQUA + event.getPlayer().getServer().getOnlinePlayers().size() + ChatColor.GOLD + "/" + ChatColor.AQUA + max + ChatColor.GOLD + ")");
+	}
+	@EventHandler
+	public void QuitMessage(PlayerQuitEvent event) {
+		int max = plugin.getConfig().getInt("rules.max");
+		if(event.getPlayer().getServer().getOnlinePlayers().size() >= max) {
+			int now = event.getPlayer().getServer().getOnlinePlayers().size();
+			now -= 1;
+			event.getPlayer().kickPlayer(ChatColor.GOLD + "Wow，伺服器已滿!!稍後再回來看看吧!(" + now + "/" + max + ")");
+		}
+		event.getPlayer().getServer().broadcastMessage(ChatColor.GRAY + event.getPlayer().getDisplayName() + ChatColor.YELLOW + " 離開了這局遊戲! (" + ChatColor.AQUA + event.getPlayer().getServer().getOnlinePlayers().size() + ChatColor.GOLD + "/" + ChatColor.AQUA + max + ChatColor.GOLD + ")");
 	}
 }
