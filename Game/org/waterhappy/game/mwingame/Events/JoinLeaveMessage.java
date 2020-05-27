@@ -36,7 +36,7 @@ public class JoinLeaveMessage implements Listener {
 		}
 		int max = plugin.getConfig().getInt("rules.max");
 		if(event.getPlayer().getServer().getOnlinePlayers().size() >= max) {
-			event.getPlayer().kickPlayer(ChatColor.GOLD + "Wow，伺服器已滿!!稍後再回來看看吧!");
+			event.getPlayer().kickPlayer(ChatColor.GOLD + "Wow，伺服器已滿!!稍後再回來看看吧!(" + event.getPlayer().getServer().getOnlinePlayers().size() + "/" + max + ")");
 		}
 		event.getPlayer().getServer().broadcastMessage(ChatColor.GRAY + event.getPlayer().getDisplayName() + ChatColor.GOLD + " 參加了這局遊戲! (" + ChatColor.AQUA + event.getPlayer().getServer().getOnlinePlayers().size() + ChatColor.GOLD + "/" + ChatColor.AQUA + max + ChatColor.GOLD + ")");
 	}
